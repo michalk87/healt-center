@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+
+<center>
+    <h2>Osiedlowy ośrodek zdrowia w Grudziądzu</h2>
+    <HR NOSHADE>
+    <H3>Rezerwacje</H3>
+    <h1 th:text="${error}"></h1>
+
+    <div style="width: 100%; height: 100%;">
+        <form th:action="@{/}" th:object="${reserwationForm}" method="post">
+
+            <input style="width: 50%;" placeholder="Imię" type="text" th:field="*{name}">
+            <input style="width: 50%;" placeholder="Nazwisko" type="text" th:field="*{lastname}">
+            <br/>
+            <span th:if="${#fields.hasErrors('date')}" th:errors="{date}"></span>
+            <input style="width: 50%;" placeholder="Data" type="date" th:field="*{date}">
+            <br/>
+            <br/>
+            <input style="width: 25%;" type="submit" value="Zarezerwuj">
+
+        </form>
+
+        <HR NOSHADE>
+
+        <table style="width: 600px">
+            <tr>
+            <tr>
+                <th style="width: 100px" bgcolor="#e0ffff" >Imię</th>
+                <th style="width: 100px" bgcolor="#e0ffff" >Nazwisko</th>
+                <th style="width: 100px" bgcolor="#e0ffff" >Data</th>
+            </tr>
+            <br/>
+            <br/>
+
+            <th:block th:each="reserwation : ${reserwations}">
+                <th th:text="${reserwation.name}"></th>
+                <th th:text="${reserwation.lastname}"></th>
+                <th th:text="${reserwation.date}"></th>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+</center>
+
+</body>
+</html>
